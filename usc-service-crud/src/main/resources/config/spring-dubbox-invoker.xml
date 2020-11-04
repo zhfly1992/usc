@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
+    http://code.alibabatech.com/schema/dubbo http://code.alibabatech.com/schema/dubbo/dubbo.xsd">
+	
+	<!-- 调用dubbo提供的注册中心接口 -->
+	<dubbo:reference id="registryService" interface="com.alibaba.dubbo.registry.RegistryService" check="false" />
+	
+	<!-- 本地调试 -->
+	<!-- <dubbo:reference id="wUserInfoByMongodbCommonRest" interface="com.run.shared.service.ucs.api.writer.user.UserBaseRestWriterService" url="dubbo:http://172.168.0.100:8888/user/register"/> -->
+	
+	<!-- 调用dubbo提供的用户中心写入RPC服务 -->
+	<dubbo:reference interface="com.run.usc.base.query.UserBaseQueryService" id="userqueryRpcService" check="false"/>
+	
+	<!-- 权限中心查询服务 -->
+	<dubbo:reference id="authzqueryRpcService" interface="com.run.authz.base.query.AuthzBaseQueryService" check="false" />
+
+	<!-- 权限中crud服务 -->
+	<dubbo:reference id="authzcrudRpcService" interface="com.run.authz.api.base.crud.AuthzBaseCurdService" check="false" />
+	
+	<!-- 用户角色rpc -->
+	<dubbo:reference interface="com.run.authz.api.base.crud.UserRoleBaseCrudService" id="userRoleBaseCrudService" check="false"/>
+	<dubbo:reference interface="com.run.authz.base.query.UserRoleBaseQueryService" id="userRoleBaseQueryService" check="false"/>
+	
+	<!--sms服务 -->
+	<dubbo:reference id="sendMailService" interface="com.run.sms.api.SendMailService" check="false"/>
+	<dubbo:reference id="sendSmsService" interface="com.run.sms.api.SendSmsService" check="false"/>
+	
+	<!-- 权限rpc -->
+	<dubbo:reference interface="com.run.authz.api.base.crud.PermissionBaseCrudService" id="permiBaseCrudService" check="false"/>
+	
+	<!-- 可靠消息实现 -->
+	<dubbo:reference interface="com.run.reliableNews.server.NewsService" id="newService" check="false"/>
+	
+</beans>

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+    http://code.alibabatech.com/schema/dubbo http://code.alibabatech.com/schema/dubbo/dubbo.xsd">
+	<dubbo:application name="dubbo-test-consumer" />
+	<dubbo:registry address="zookeeper://131.10.10.104:2181" />
+	<!-- 本地调试 -->
+	<!-- <dubbo:reference id="wUserInfoByMongodbCommonRest" interface="com.run.shared.service.ucs.api.writer.user.UserBaseRestWriterService" url="dubbo:http://172.168.0.100:8888/user/register"/> -->
+	<dubbo:reference id="metaDataPackageCrudRpcService" interface="com.run.metadata.api.base.crud.MetaDataPackageCrudRpcService" url="dubbo://131.10.10.223:20881" />
+</beans>

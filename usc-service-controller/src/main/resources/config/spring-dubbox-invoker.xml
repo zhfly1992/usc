@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+    http://code.alibabatech.com/schema/dubbo http://code.alibabatech.com/schema/dubbo/dubbo.xsd">
+
+	<!-- 调用dubbo提供的用户中心写入RPC服务 -->
+	<dubbo:reference interface="com.run.usc.api.base.crud.UserBaseCurdService"
+		id="userCrudRpcService" check="false" timeout="13000" />
+
+	<!-- 调用dubbo提供的用户中心写入RPC服务 -->
+	<dubbo:reference interface="com.run.usc.base.query.UserBaseQueryService"
+		id="userQueryRpcService" check="false" timeout="13000" />
+
+	<!-- 调用dubbo提供的用户中心租户写入RPC服务 -->
+	<dubbo:reference interface="com.run.usc.api.base.crud.TenementBaseCrudService"
+		id="tenementCrud" check="false" />
+
+	<!-- 调用dubbo提供的用户中心租户写入RPC服务 -->
+	<dubbo:reference interface="com.run.usc.base.query.TenementBaseQueryService"
+		id="tenementQuery" check="false" />
+
+	<!-- 调用dubbo提供的用户中心接入方查询RPC服务 -->
+	<dubbo:reference interface="com.run.usc.base.query.TenAccBaseQueryService"
+		id="tenaccQuery" check="false" />
+
+	<!-- 调用dubbo提供的用户中心接入方写入RPC服务 -->
+	<dubbo:reference interface="com.run.usc.api.base.crud.TenAccBaseCrudService"
+		id="tenaccCrud" check="false" />
+
+	<!-- 调用dubbo提供的用户中心接入方写入RPC服务 -->
+	<dubbo:reference interface="com.run.usc.base.query.AccSourceBaseQueryService"
+		id="accSourceQuery" check="false" timeout="30000" />
+
+	<!-- 调用dubbo提供的用户中心接入方写入RPC服务 -->
+	<dubbo:reference interface="com.run.usc.api.base.crud.AccSourceBaseCrudService"
+		id="accSourceCrud" check="false" />
+
+	<!-- 调用dubbo提供的用户中心接入方写入RPC服务 -->
+	<dubbo:reference interface="com.run.usc.base.query.AccUserBaseQueryService"
+		id="accUserQuery" check="false" />
+
+	<!-- 调用dubbo提供的用户中心接入方写入RPC服务 -->
+	<dubbo:reference interface="com.run.usc.api.base.crud.AccUserBaseCrudService"
+		id="accUserCrud" check="false" />
+
+	<!-- 用户角色rpc -->
+	<dubbo:reference interface="com.run.authz.api.base.crud.UserRoleBaseCrudService"
+		id="userRoleBaseCrudService" check="false" />
+
+
+	<dubbo:reference interface="com.run.usc.api.base.crud.TestUserService"
+		id="testUserService" check="false" timeout="10000" />
+	<!-- test -->
+	<dubbo:reference interface="com.run.usc.api.base.crud.OracleTestService"
+		id="oracleTestService" check="false" />
+
+
+</beans>

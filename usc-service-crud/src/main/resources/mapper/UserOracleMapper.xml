@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.run.usc.test.repository.OracleRepository">
+
+	<select id="getAllUserInfo" resultType="java.util.Map"
+		parameterType="java.util.Map">
+		select * from sys_user where COMPANYID = #{accessSecret}
+	</select>
+
+	<select id="getAccessSecret" resultType="java.util.Map"
+		parameterType="java.util.Map">
+		select * from
+		SYS_COMPANY
+		where ID = #{accessSecret}
+	</select>
+
+	<select id="getOrgInfo" resultType="java.util.Map"
+		parameterType="java.util.Map">
+		SELECT
+		c.*, P . ID parId , sc.companyname
+		FROM
+		SYS_ORGANIZATIONA c
+		LEFT JOIN SYS_ORGANIZATIONA P ON c.PARENTORGANIZATIONALCODED = P
+		.ORGANIZATIONALCODE
+		LEFT JOIN SYS_COMPANY sc on c.COMPANYID = sc.ID
+		WHERE
+		c.COMPANYID = #{accessSecret}
+	</select>
+
+	<select id="getJurisdiction" resultType="Map" parameterType="java.util.Map">
+		SELECT
+		MC.*
+		FROM
+		marketingCenter_organizationa mo
+		LEFT JOIN
+		MARKETING_CENTER mc ON MO.MARKETINGCENTERID = MC."ID"
+		WHERE
+		ORGANIZATIONALID = #{orgId}
+		AND COMPANYID = #{accessSecret}
+	</select>
+
+</mapper>

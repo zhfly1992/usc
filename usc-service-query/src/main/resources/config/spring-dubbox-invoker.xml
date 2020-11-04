@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
+    http://code.alibabatech.com/schema/dubbo http://code.alibabatech.com/schema/dubbo/dubbo.xsd">
+
+	<dubbo:reference interface="com.alibaba.dubbo.registry.RegistryService"
+		check="false" />
+
+	<!-- 权限中心查询服务 -->
+	<dubbo:reference id="authzqueryRpcService"
+		interface="com.run.authz.base.query.AuthzBaseQueryService" check="false" />
+
+	<!-- 权限中crud服务 -->
+	<dubbo:reference id="authzcrudRpcService"
+		interface="com.run.authz.api.base.crud.AuthzBaseCurdService" check="false" />
+
+	<!-- 用户角色rpc -->
+	<dubbo:reference interface="com.run.authz.base.query.UserRoleBaseQueryService"
+		id="userRoleBaseQueryService" check="false" />
+
+	<!-- 服务查询 -->
+	<dubbo:reference interface="com.run.governance.service.query.GovernanceServices"
+		id="governanceServices" check="false" />
+
+	<!--sms服务 -->
+	<dubbo:reference id="sendMailService" interface="com.run.sms.api.SendMailService"
+		check="false" />
+	<dubbo:reference id="sendSmsService" interface="com.run.sms.api.SendSmsService"
+		check="false" />
+</beans>

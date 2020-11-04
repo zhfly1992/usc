@@ -1,0 +1,1 @@
+authzFilter=com.run.tool.base.rpc.filter.AuthzFilter

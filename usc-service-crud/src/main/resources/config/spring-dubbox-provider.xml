@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
+    http://code.alibabatech.com/schema/dubbo http://code.alibabatech.com/schema/dubbo/dubbo.xsd">
+
+	<dubbo:protocol name="dubbo" port="${service.port:80}"
+		accesslog="true" />
+
+
+	<!-- dubbo提供的元数据属性的枚举值的写入RPC服务 -->
+	<dubbo:service interface="com.run.usc.api.base.crud.UserBaseCurdService"
+		ref="userBaseCurdService" protocol="dubbo" retries="0" />
+
+	<!-- dubbo提供的元数据属性的枚举值的写入RPC服务 -->
+	<dubbo:service interface="com.run.usc.api.base.crud.TenementBaseCrudService"
+		ref="teninfocrudservice" protocol="dubbo" retries="0" />
+
+	<!-- dubbo提供的元数据属性的枚举值的写入RPC服务 -->
+	<dubbo:service interface="com.run.usc.api.base.crud.TenAccBaseCrudService"
+		ref="tenaccinfocrudservice" protocol="dubbo" retries="0" />
+
+	<!-- dubbo提供的元数据属性的枚举值的写入RPC服务 -->
+	<dubbo:service interface="com.run.usc.api.base.crud.AccSourceBaseCrudService"
+		ref="accSourceCrud" protocol="dubbo" retries="0" />
+
+	<!-- dubbo提供的元数据属性的枚举值的写入RPC服务 -->
+	<dubbo:service interface="com.run.usc.api.base.crud.AccUserBaseCrudService"
+		ref="accUserCrud" protocol="dubbo" retries="0" />
+
+	<!-- test服务 -->
+	<dubbo:service interface="com.run.usc.api.base.crud.OracleTestService"
+		ref="oracleTestService" protocol="dubbo" retries="0" timeout="10000" />
+	<bean id="oracleTestService" class="com.run.usc.base.curd.service.OracleTestServiceImpl" />
+
+
+	<!-- 被调用的beans -->
+	<bean id="userBaseCurdService" class="com.run.usc.base.curd.service.UserBaseCurdRpcSerImpl" />
+	<bean id="teninfocrudservice" class="com.run.usc.base.curd.service.TenInfoCrudRpcSerImpl" />
+	<bean id="tenaccinfocrudservice" class="com.run.usc.base.curd.service.TenAccInfoCrudRpcSerImpl" />
+	<bean id="accSourceCrud" class="com.run.usc.base.curd.service.AccSourceCrudRpcSerImpl" />
+	<bean id="accUserCrud" class="com.run.usc.base.curd.service.AccUserCrudRpcSerImpl" />
+
+
+
+	<!-- dubbo提供的元数据属性的枚举值的写入RPC服务 -->
+	<dubbo:service interface="com.run.usc.api.base.crud.TestUserService"
+		ref="testUserService" protocol="dubbo" />
+	<bean id="testUserService" class="com.run.usc.base.curd.service.TestUserServiceImpl" />
+</beans>

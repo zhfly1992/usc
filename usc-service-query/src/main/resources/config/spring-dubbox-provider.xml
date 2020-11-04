@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
+    http://code.alibabatech.com/schema/dubbo http://code.alibabatech.com/schema/dubbo/dubbo.xsd">
+
+	<dubbo:protocol name="dubbo" port="${service.port:81}" accesslog="true" />
+	
+	<!-- filter="authzFilter" -->
+	
+	<!-- dubbo提供的用户中心写入RPC服务 -->
+	<dubbo:service interface="com.run.usc.base.query.UserBaseQueryService" ref="userBasequeryService" protocol="dubbo" />
+	
+	<!-- dubbo提供的的读入RPC服务 -->
+	<dubbo:service interface="com.run.usc.base.query.TenementBaseQueryService" ref="teninfoqueryservice" protocol="dubbo" />
+	
+	<!-- dubbo提供的的读入RPC服务 -->
+	<dubbo:service interface="com.run.usc.base.query.TenAccBaseQueryService" ref="tenaccinfoqueryservice" protocol="dubbo" />
+	
+	<!-- dubbo提供的的读入RPC服务 -->
+	<dubbo:service interface="com.run.usc.base.query.AccSourceBaseQueryService" ref="accSourceQuery" protocol="dubbo" timeout="30000" />
+	
+	<!-- dubbo提供的的读入RPC服务 -->
+	<dubbo:service interface="com.run.usc.base.query.AccUserBaseQueryService" ref="accUserQuery" protocol="dubbo" />
+	
+	
+	<!-- 被调用的beans -->
+	<bean id="userBasequeryService" class="com.run.usc.service.query.UserInfoQueryRpcSerImpl" />
+	<bean id="teninfoqueryservice" class="com.run.usc.service.query.TenInfoQueryRpcSerImpl" />
+	<bean id="tenaccinfoqueryservice" class="com.run.usc.service.query.TenAccQueryRpcSerImpl" />
+	<bean id="accSourceQuery" class="com.run.usc.service.query.AccSourceQueryRpcSerImpl" />
+	<bean id="accUserQuery" class="com.run.usc.service.query.AccUserQueryRpcSerImpl" />
+	
+	
+	<dubbo:service interface="com.run.usc.base.query.TestQueryService" ref="testQuery" protocol="dubbo" />
+	<bean id="testQuery" class="com.run.usc.service.query.TestQueryServiceImpl" />
+
+</beans>
